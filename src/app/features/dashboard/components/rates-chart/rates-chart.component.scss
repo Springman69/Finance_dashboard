@@ -1,0 +1,59 @@
+.rates-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 360px;
+}
+
+.rates-chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.rates-chart__header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.rates-chart__subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--muted-text-color);
+  font-size: 0.9rem;
+}
+
+.rates-chart__range {
+  font-size: 0.85rem;
+  color: var(--muted-text-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.rates-chart__canvas {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.rates-chart__status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted-text-color);
+}
+
+.rates-chart__status--error {
+  color: var(--danger-color);
+}
+
+.rates-chart__status--muted {
+  color: var(--muted-text-color);
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 1px dashed rgba(148, 163, 184, 0.2);
+  border-radius: 1rem;
+}

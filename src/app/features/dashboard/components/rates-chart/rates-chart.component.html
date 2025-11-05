@@ -1,0 +1,32 @@
+<section class="rates-chart">
+  <header class="rates-chart__header">
+    <div>
+      <h2>{{ selectedCode() ? selectedCode() : 'Select a currency' }}</h2>
+      <p *ngIf="currencyName()" class="rates-chart__subtitle">{{ currencyName() }}</p>
+    </div>
+    <span class="rates-chart__range">
+      {{ dateRange().start }} → {{ dateRange().end }}
+    </span>
+  </header>
+
+  <p *ngIf="error() as message" class="rates-chart__status rates-chart__status--error">
+    {{ message }}
+  </p>
+
+  <p *ngIf="!error() && loading()" class="rates-chart__status">Loading historical series…</p>
+
+  <div class="rates-chart__canvas" *ngIf="!loading() && !error() && hasData(); else emptyState">
+    <canvas
+      baseChart
+      [data]="chartData()"
+      [options]="chartOptions"
+      type="line"
+    ></canvas>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="rates-chart__status rates-chart__status--muted">
+      Select a currency to view the historical performance.
+    </div>
+  </ng-template>
+</section>

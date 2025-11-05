@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <div class="dashboard__controls">
+    <ui-card>
+      <app-controls-panel
+        [codes]="availableCodes()"
+        [selectedCode]="selectedCode()"
+        [dateRange]="dateRange()"
+        [filterTerm]="filterTerm()"
+        [lastUpdated]="lastUpdated()"
+        [loading]="ratesLoading() || seriesLoading()"
+        (codeChange)="onSelectCode($event)"
+        (filterChange)="onFilterChange($event)"
+        (dateRangeChange)="onRangeChange($event)"
+        (refreshRequested)="onRefresh()"
+      ></app-controls-panel>
+    </ui-card>
+  </div>
+
+  <div class="dashboard__grid">
+    <ui-card class="dashboard__panel">
+      <app-rates-table
+        [rates]="filteredRates()"
+        [loading]="ratesLoading()"
+        [error]="ratesError()"
+        [selectedCode]="selectedCode()"
+        (rateSelected)="onSelectCode($event)"
+      ></app-rates-table>
+    </ui-card>
+
+    <ui-card class="dashboard__panel">
+      <app-rates-chart
+        [series]="series()"
+        [selectedCode]="selectedCode()"
+        [dateRange]="dateRange()"
+        [loading]="seriesLoading()"
+        [error]="seriesError()"
+        [currencyName]="selectedCurrency()?.currency ?? null"
+      ></app-rates-chart>
+    </ui-card>
+  </div>
+</div>
